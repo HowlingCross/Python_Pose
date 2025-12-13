@@ -1,13 +1,19 @@
-# Python_Pose
-Ez a projekt egy valós idejű, mesterséges intelligencia alapú rendszert valósít meg, amely képes az emberi testtartás és mozgásforma precíz elemzésére a fitness edzések során. A projekt célja, hogy megoldást nyújtson a sportolók és edzők számára a helytelenül végzett gyakorlatokból eredő sérülések  és a csökkent edzéshatékonyság problémájára.
+Python Pose: Valós idejű Edzésanalitikai AI Rendszer
+Cél
+Egy valós idejű, mélytanuláson alapuló rendszer létrehozása az emberi testtartás és mozgásforma precíz elemzésére fitness edzések során. A cél a helytelenül végzett gyakorlatok azonnali szűrése, ezzel a sérülések megelőzése és az edzéshatékonyság növelése.
 
+Felhasznált Modell
+Típus: YOLOv8-Pose (State-of-the-Art, SOTA) neurális hálózat.
 
-A megvalósítás alapját a mélytanulás képezi. Egy SOTA (State-of-the-Art) neurális hálózatot, a YOLOv8-Pose modellt használtuk, mely a Single-Shot Detection elvét követve , kiváló sebességgel és pontossággal képes a 17 kritikus emberi kulcspont (keypoint) valós idejű detektálására. Az adathalmaz tekintetében átviteli tanulást (Transfer Learning) alkalmaztunk, kihasználva a modell előzetes betanítását nagyméretű, nyilvános adathalmazokon (pl. COCO Keypoints Dataset).
+Elv: Single-Shot Detection.
 
+Működés: Képes 17 kritikus emberi kulcspont (keypoint) valós idejű, gyors és pontos detektálására a videóképen. De ebből mi csak azokat használjuk ami egy fekvőhöz kellhet.
 
+Számítás: A kinyert kulcspontokból geometriai számítások (koszinusztétel, vektoranalízis) segítségével meghatározzuk a kritikus ízületi szögeket (pl. térd-csípő-boka).
 
+Értékelés: Az ízületi szögek alapján történik a kiválasztott gyakorlat (most fekvőtámasz) helyességének valós idejű mérése.
 
+Kimenet és Alkalmazás
+Visszajelzés: Azonnali, vizuális visszajelzés egy számban.
 
-A detektálás után a rendszer a jármű-mechatronikában is alkalmazott pozícióelemzési elveket ülteti át a fitness világába. A kinyert kulcspontokból geometriai számítások (koszinusztétel, vektoranalízis) segítségével kritikus ízületi szögeket (pl. térd-csípő-boka) számítunk, ezzel mérve a kiválasztott gyakorlat (pl. guggolás) helyességét. Az eredmények azonnali, vizuális visszajelzés formájában jelennek meg a felhasználó számára.
-
-A projekt a BME Gépjárműtechnológia Tanszékének fókuszához illeszkedve a mesterséges intelligencia és a valós idejű kiértékelés fontosságát hangsúlyozza. A kód és a demó egy nyilvános GitHub repóban érhető el.
+Kód: A projekt kódja és demója nyilvános GitHub repóban érhető el.
