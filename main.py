@@ -37,7 +37,24 @@ feedback = "START"
 while cap.isOpened():
     ret, frame = cap.read()
     if not ret: break
+
+    if MODE == "SIDE":
+    conf = result.keypoints.conf.cpu().numpy()[0]
     
+    # Bal csukló (9) és Jobb csukló (10) megbízhatóságának összehasonlítása
+    if conf[9] > conf[10]:
+        idx_s, idx_e, idx_w = 5, 7, 9   # Bal oldal
+        side_label = "BAL"
+    else:
+        idx_s, idx_e, idx_w = 6, 8, 10  # Jobb oldal
+        side_label = "JOBB"
+    
+    shoulder, elbow, wrist = kp[idx_s], kp[idx_e], kp[idx_w]
+    val = calculate_angle(shoulder, elbow, wrist)
+    
+    # Kiírjuk, melyik oldalt figyeli a rendszer 
+    cv2.putText(frame, f"OLDAL: {side_label} (conf:{conf[idx_w]:.2f})", (50, 80), 
+                cv2.FONT_HERSHEY_SIMPLEX, 0.6, (255, 255, 0), 2)
     # Kép átméretezése
     frame = cv2.resize(frame, (0, 0), fx=0.4, fy=0.4)
 
